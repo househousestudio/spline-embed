@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spline Embed</title>
 
-  <!-- Allows Spline to use eval-based interactions -->
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' https://unpkg.com;">
+  <!-- ✅ Fixes for Spline interactivity & web workers -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' https://unpkg.com; worker-src blob:;">
 
-  <!-- Load the Spline viewer script -->
+  <!-- ✅ Load the Spline viewer script -->
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 
   <style>
@@ -28,7 +28,7 @@
   </style>
 </head>
 <body>
-  <!-- Your actual Spline scene -->
+  <!-- ✅ Your actual Spline scene -->
   <spline-viewer
     loading-anim-type="none"
     url="https://prod.spline.design/iV5c0C5xgfzCBwVR/scene.splinecode"
