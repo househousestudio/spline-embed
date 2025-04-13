@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spline Embed</title>
+  <title>Pottery Game Embed</title>
 
-  <!-- ✅ Fixes for Spline interactivity & web workers -->
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' https://unpkg.com; worker-src blob:;">
+  <!-- ✅ Security Policy: allows eval + blob-based Web Workers -->
+  <meta http-equiv="Content-Security-Policy"
+        content="script-src 'self' 'unsafe-eval' https://unpkg.com; worker-src blob:;">
 
-  <!-- ✅ Load the Spline viewer script -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+  <!-- ✅ Load Spline Viewer -->
+  <script type="module"
+          src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       width: 100%;
+      height: 100%;
       background: black;
     }
 
@@ -31,7 +33,33 @@
   <!-- ✅ Your actual Spline scene -->
   <spline-viewer
     loading-anim-type="none"
-    url="https://prod.spline.design/iV5c0C5xgfzCBwVR/scene.splinecode"
-  ></spline-viewer>
+    url="https://prod.spline.design/iV5c0C5xgfzCBwVR/scene.splinecode">
+  </spline-viewer>
+
+  <!-- ✅ Optional script to re-trigger variables (customize as needed) -->
+  <script>
+    const viewer = document.querySelector("spline-viewer");
+
+    viewer.addEventListener("load", () => {
+      console.log("🔧 Spline scene loaded");
+
+      // Wait until camera finishes transitioning into pottery wheel scene
+      setTimeout(() => {
+        viewer.setVariable("MAIN_CYL_HEIGHT", 35);
+        viewer.setVariable("BASE_DIAMETER", 25);
+        viewer.setVariable("MAIN_CYL_ROUND", 8);
+        viewer.setVariable("SPINNER_COUNTER", 0);
+        viewer.setVariable("MAIN_CYL_HOLLOW", 0);
+        viewer.setVariable("HOLLOW", 0);
+        viewer.setVariable("SPOUT_LENGTH", 10);
+        viewer.setVariable("SPOUT_HEIGHT", -3);
+        viewer.setVariable("SPOUT_POS", 20);
+        viewer.setVariable("SPOUT_BOOL_POS", 15);
+        viewer.setVariable("SPOUT_BOOLEAN HEIGHT", -35);
+        viewer.setVariable("MAIN_CYL_POS_UP", 0);
+        console.log("🔄 Variables re-initialized");
+      }, 2000); // adjust timing as needed
+    });
+  </script>
 </body>
 </html>
